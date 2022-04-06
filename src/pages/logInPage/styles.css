@@ -1,0 +1,40 @@
+.logInBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #282c34;
+  min-height: 100vh;
+}
+
+.mainText {
+  color: #ffc107;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50px;
+}
+
+.text {
+  text-align: center;
+  font-size: x-large;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 10px;
+  padding: 50px;
+  height: 400px;
+  width: 450px;
+}
+
+.button {
+  width: 100%;
+  border-radius: 50px;
+}
