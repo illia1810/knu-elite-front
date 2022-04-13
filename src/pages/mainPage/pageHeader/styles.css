@@ -1,21 +1,17 @@
 .main-header {
-  width: 100vw;
-  height: 75px;
+  height: 100px;
   background-color: #282c34;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid #fff;
 }
 
 .main-header__right {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  margin-left: 10px;
 }
 
 .button__new-task {
-  margin: 0 10px;
+  margin-right: 10px;
 }
 
 .call-icon, .profile-icon {
@@ -28,7 +24,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 48px;
+  height: 50px;
   background-color: #fff;
   margin-right: 10px;
   padding: 5px;

@@ -1,27 +1,42 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Alert, Button, Form } from "react-bootstrap";
+import { URL, MyContext } from "../../global";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 
 function LogIn() {
+  const { setUserInfo } = useContext(MyContext);
   const navigate = useNavigate();
   const [logIn, setLogIn] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState("");
 
-  const signIn = () => {
-    if (logIn === "knu@gmail.com" && password === "11111") {
+  const signIn = async () => {
+    const data = { email: logIn, password: password };
+
+    try {
+      const response = await fetch(URL + "/api/user/check", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
       navigate("/mainPage");
-    } else {
+      setUserInfo(json.value);
+      console.log("Успех:", json);
+    } catch (error) {
       setShow(true);
+      console.error("Ошибка:", error);
     }
   };
 
   return (
     <>
-      <h1 className="mainText">KNU ELITE</h1>
       <div className="logInBox">
+      <h1 className="mainText">KNU ELITE</h1>
         {show && (
           <Alert variant="danger" onClose={() => setShow(false)} dismissible>
             <Alert.Heading>Invalid Login or Password</Alert.Heading>
