@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal, Form } from "react-bootstrap";
 
-function NewTask({ title }) {
-  const [show, setShow] = useState(false);
+function NewTask({ title, modalShown }) {
+  const [show, setShow] = useState(modalShown);
 
   const handleClose = () => setShow(false);
   
