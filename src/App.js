@@ -4,12 +4,12 @@ import LogIn from "./pages/logInPage/LogIn";
 import MainPage from "./pages/mainPage/MainPage";
 import { MyContext } from "./global";
 
-
 function App() {
   const [userInfo, setUserInfo] = useState("");
+  const [reload, setReload] = useState("a");
   return (
     <div className="App">
-      <MyContext.Provider value={{ userInfo, setUserInfo }}>
+      <MyContext.Provider value={{ userInfo, setUserInfo, reload, setReload }}>
         <Router>
           <Routes>
             <Route exact path="/" element={<LogIn />} />
