@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal, Form } from "react-bootstrap";
 
 function NewTask({ title, modalShown }) {
-  const { setReload } = useContext(MyContext);
+  const { setReload, userInfo } = useContext(MyContext);
   const [show, setShow] = useState(modalShown);
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
@@ -32,30 +32,40 @@ function NewTask({ title, modalShown }) {
   const handleClose = () => setShow(false);
 
   const createNewTask = () => {
-    fetch(URL + `/api/task`, {
-      method: "POST",
-      body: JSON.stringify({
-        title: taskTitle,
-        description: taskDescription,
-        loggedTime: "",
-        estimatedTime: taskEstimation,
-        typeId: "31", // default - Task
-        statusId: taskStatus,
-        projectId: "1", //default - Project 1
-        reporterId: "1", //default - PM
-        assigneeId: assignee,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        setShow(false);
-        setReload("b");
-        console.log("Успех:", result);
+    if (
+      taskTitle &&
+      taskDescription &&
+      taskEstimation &&
+      taskStatus &&
+      assignee
+    ) {
+      fetch(URL + `/api/task`, {
+        method: "POST",
+        body: JSON.stringify({
+          title: taskTitle,
+          description: taskDescription,
+          loggedTime: "",
+          estimatedTime: taskEstimation,
+          typeId: "31", // default - Task
+          statusId: taskStatus,
+          projectId: "1", //default - Project 1
+          reporterId: userInfo.id,
+          assigneeId: assignee,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) => console.log("Ошибка:", error));
+        .then((response) => response.json())
+        .then((result) => {
+          setShow(false);
+          setReload("b");
+          console.log("Успех:", result);
+        })
+        .catch((error) => console.log("Ошибка:", error));
+    } else {
+      alert("Please input all fields");
+    }
   };
 
   return (

@@ -54,10 +54,10 @@ function LogIn() {
                 onChange={({ target }) => setLogIn(target.value)}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                type="email"
+                type="password"
                 placeholder="Enter password"
                 onChange={({ target }) => setPassword(target.value)}
               />

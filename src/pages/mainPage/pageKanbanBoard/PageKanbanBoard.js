@@ -11,9 +11,14 @@ const calls = {
       title: "CALLS",
       cards: [
         {
-          id: 1,
-          title: "Planning session",
-          description: "17:00",
+          id: 21,
+          title: "Planned Daily meeting",
+          description: "2022-01-01T09:00:00",
+        },
+        {
+          id: 31,
+          title: "Planned Retrospective meeting",
+          description: "2022-01-01T17:00:00",
         },
       ],
     },
@@ -169,7 +174,7 @@ function PageKanbanBoard() {
       .catch((error) => console.log("Ошибка:", error));
   }, [board, reload, setReload]);
 
-  const onCardDragEnd = (board, card, destination) => {
+  const onCardDragEnd = (b, card, destination) => {
     fetch(URL + `/api/task/${card.id}`, {
       method: "PUT",
       body: JSON.stringify({
@@ -190,7 +195,6 @@ function PageKanbanBoard() {
     })
       .then((response) => response.json())
       .then((result) => {
-        setTasks(board);
         console.log("Успех:", result);
       })
       .catch((error) => console.log("Ошибка:", error));
